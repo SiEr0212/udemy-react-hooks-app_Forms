@@ -1,22 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
 function App() {
+  const [name, setName] = useState("default");
+  const [income, setIncome] = useState("high");
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleIncomeChange = (e) => {
+    setIncome(e.target.value);
+  };
+
+  const onSubmitHandle = () => {
+    console.log('state =', name, income);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <form onSubmit={onSubmitHandle}>
+          <div>
+            <span>Name: </span>
+            <input value={name} type="text" onChange={handleNameChange}></input>
+          </div>
+          <div>
+            <span>Income: </span>
+            <select value={income} onChange={handleIncomeChange}>
+              <option value="high">High</option>
+              <option value="mid">Mid</option>
+              <option value="low">Low</option>
+            </select>
+            <input type="submit" value="submit"></input>
+          </div>
+        </form>
       </header>
     </div>
   );
